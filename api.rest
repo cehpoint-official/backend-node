@@ -1,0 +1,44 @@
+POST http://localhost:5000/newstudentdetails
+Content-Type: application/json
+
+{
+    "name": "name",
+    "guardianName": "father",
+    "phoneNumber": 12875,
+    "email": "abc@xyz.com",
+    "address": "somewhere",
+    "interest": "none",
+    "goals": "none",
+    "source": "none",
+    "courseInterested": false,
+    "parentSupport": false,
+    "onlineComfortable": false,
+    "approvalStatus": false
+}
+
+###
+
+POST http://localhost:5000/newclientdetails
+Content-Type: application/json
+
+{
+    "name": "somename",
+    "companyName": "none",
+    "phoneNumber": 18090,
+    "email": "abc@xyz.com",
+    "address": "somewhere",
+    "interest": "none",
+    "goals": null,
+    "source": "yahoo",
+    "approvalStatus": false
+}
+
+###
+GET http://localhost:5000/getunapprovedclients
+
+###
+GET http://localhost:5000/getunapprovedstudents
+
+###
+
+GET http://localhost:5000/getcounts
