@@ -13,7 +13,7 @@ Content-Type: application/json
     "courseInterested": false,
     "parentSupport": false,
     "onlineComfortable": false,
-    "approvalStatus": false
+    "approvalStatus": true
 }
 
 ###
@@ -28,16 +28,16 @@ Content-Type: application/json
     "email": "abc@xyz.com",
     "address": "somewhere",
     "interest": "none",
-    "goals": null,
+    "goals": "null",
     "source": "yahoo",
-    "approvalStatus": false
+    "approvalStatus": true
 }
 
 ###
-GET http://localhost:5000/getunapprovedclients
+GET http://localhost:5000/getclientdata
 
 ###
-GET http://localhost:5000/getunapprovedstudents
+GET http://localhost:5000/getstudentdata
 
 ###
 

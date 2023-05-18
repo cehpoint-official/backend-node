@@ -1,4 +1,4 @@
-const studentModel = require('../database/models/StudentModel.js');
+const StudentModel = require('../database/models/StudentModel.js');
 
 module.exports = {
     addNewStudent,
@@ -9,8 +9,8 @@ module.exports = {
 }
 
 async function addNewStudent(body){
-    try{
-        await studentModel.create(body);
+    try {
+        await StudentModel.create(body);
         return true;
     } catch (err){
         console.log(err)
@@ -18,33 +18,33 @@ async function addNewStudent(body){
     }
 }
 
+
 function getUnapprovedStudents(){
-    try {
-        return studentModel.find({'approvalStatus': false});
-    } catch (err) {
-        console.log(err);
-        return null;
-    }
+    return StudentModel.findAll({'where': {'approvalStatus': false}})
+    .then(obj => obj.map( val => val.toJSON()))
+    .catch( () => null);
 }
 
 function getStudentCounts(){
-        return Promise.all([studentModel.countDocuments({}), studentModel.countDocuments({'approvalStatus': false})])
-        .then(results=>({'studentCount': results[0], 'unapprovedStudentCount': results[1]}))
-        .catch(err=>null);
+    return Promise.all([StudentModel.count(), StudentModel.count({'where': {'approvalStatus': false}})])
+    .then(results=>({'studentCount': results[0], 'unapprovedStudentCount': results[1]}))
+    .catch(() => null);
 }
 
 function getStudentData(){
-    return studentModel.find({});
+    return StudentModel.findAll()
+    .then(obj => obj.map( val => val.toJSON()))
+    .catch(() => null);
 }
 
 async function approveStudent(id){
     try {
-        await studentModel.updateOne(
-            {'id': id},
-            {'approvalStatus': true}
+        await StudentModel.update(
+            {'approvalStatus': true},
+            {'where' : {'id': id}}
         );
     }
     catch (err) {
         console.log(err);
     }
-}   
+}

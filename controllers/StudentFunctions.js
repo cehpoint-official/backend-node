@@ -1,6 +1,6 @@
 module.exports = {
     'newStudentDetails': newStudentDetails,
-    'getUnapprovedStudents': getUnapprovedStudents.apply,
+    'getUnapprovedStudents': getUnapprovedStudents,
     'getStudentCounts': getStudentCounts,
     'getStudentData': getStudentData,
     'approveStudent': approveStudent
@@ -10,7 +10,6 @@ module.exports = {
 const studentService = require('../services/StudentServices.js')
 const clientPrefix = 'CS';
 const crypto = require('crypto');
-const StudentModel = require('../database/models/StudentModel.js');
 
 function newStudentDetails(req, res){
     const unique_id = clientPrefix + crypto.randomBytes(7).toString('hex');
@@ -60,7 +59,7 @@ function getStudentCounts(req, res, next){
 }
 
 function getStudentData(req, res){
-    StudentModel.getStudentData()
+    studentService.getStudentData()
     .then(data => {
         res.json({
             'ok': true,

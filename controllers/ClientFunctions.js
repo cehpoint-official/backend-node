@@ -9,7 +9,6 @@ module.exports = {
 const clientService = require('../services/ClientServices.js')
 const clientPrefix = 'CC';
 const crypto = require('crypto');
-const ClientModel = require('../database/models/ClientModel.js');
 
 function newClientDetails(req, res){
     const unique_id = clientPrefix + crypto.randomBytes(7).toString('hex');
@@ -77,7 +76,7 @@ function getClientCounts(req, res){
 }
 
 function getClientData(req, res){
-    ClientModel.getClientData()
+    clientService.getClientData()
     .then( data => {
         res.json({
             'ok': true,

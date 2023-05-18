@@ -1,9 +1,27 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+const { Sequelize, DataTypes } = require('sequelize');
 require('dotenv').config();
 
-const db_url = process.env.MONGO_URL + process.env.MONGO_PASSWORD + process.env.MONGO_CLUSTER;
-const db = mongoose.connect(db_url)
-.then(()=>console.log('database connection successful'))
-.catch(err => console.log(err) || process.exit(1));
+const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.PASSWORD, {
+    host: process.env.HOST,
+    dialect: 'mysql'
+});
 
-module.exports.db = db;
+db.authenticate()
+.then(() => {
+    console.log('Connection has been established successfully.');
+})
+.catch(err => {
+    console.error('Unable to connect to the database:', err) || process.exit(1);
+});
+
+db.sync()
+.then(() => {
+    console.log('Database and tables synced');
+})
+.catch(error => {
+    console.error('Error syncing database:', error);
+});
+
+
+module.exports = db;

@@ -1,5 +1,4 @@
 const ClientModel = require('../database/models/ClientModel.js');
-const clientModel = require('../database/models/ClientModel.js');
 
 module.exports = {
     addNewClient,
@@ -11,7 +10,7 @@ module.exports = {
 
 async function addNewClient(body){
     try {
-        await clientModel.create(body);
+        await ClientModel.create(body);
         return true;
     } catch (err){
         console.log(err)
@@ -20,29 +19,28 @@ async function addNewClient(body){
 }
 
 function getUnapprovedClients(){
-    try {
-        return clientModel.find({'approvalStatus': false});
-    } catch (err){
-        console.log(err)
-        return null;
-    }
+    return ClientModel.findAll({'where': {'approvalStatus': false}})
+    .then(obj => obj.map(val => val.toJSON()))
+    .catch(() => null);
 }
 
 function getClientCounts(){
-    return Promise.all([clientModel.countDocuments({}), clientModel.countDocuments({'approvalStatus': false})])
+    return Promise.all([ClientModel.count(), ClientModel.count({'where': {'approvalStatus': false}})])
     .then(results=>({'clientCount': results[0], 'unapprovedClientCount': results[1]}))
-    .catch(err=>null);
+    .catch(() => null);
 }
 
-function getClientData(){
-    return clientModel.find({});
+function getClientData() {
+    return ClientModel.findAll()
+    .then( obj => obj.map( val => val.toJSON()))
+    .catch(() => null);
 }
 
 async function approveClient(id){
     try {
-        await ClientModel.updateOne(
-            {'id': id},
-            {'approvalStatus': true}
+        await ClientModel.update(
+            {'approvalStatus': true},
+            {'where': {'id': id}}
         );
     }
     catch (err) {

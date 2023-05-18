@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
 });
 app.post('/newstudentdetails', userMethods.newStudentDetails);
 app.post('/newclientdetails', clientMethods.newClientDetails);
-app.get('/getunapprovedclients', clientMethods.getUnapprovedClients);
-app.get('/getunapprovedstudents', userMethods.getUnapprovedStudents);
+// app.get('/getunapprovedclients', clientMethods.getUnapprovedClients);
+// app.get('/getunapprovedstudents', userMethods.getUnapprovedStudents);
 app.get('/getcounts', userMethods.getStudentCounts, clientMethods.getClientCounts);
 app.get('/getstudentdata', userMethods.getStudentData);
 app.get('/getclientdata', clientMethods.getClientData);

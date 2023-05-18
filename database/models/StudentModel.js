@@ -1,24 +1,64 @@
-const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const { DataTypes } = require('sequelize');
+const db = require('../init.js');
 
-const studentSchema = new Schema({
-    id: String,
-    name: String,
-    guardianName: String,
-    phoneNumber: String,
-    email: String,
-    address: String,
-    interest: String,
-    goals: String,
-    source: String,
-    courseInterested: Boolean,
-    parentSupport: Boolean,
-    onlineComfortable: Boolean,
-    approvalStatus: {
-        type: Boolean,
-        default: false
-    }
+const StudentModel = db.define('Student', {
+  id: {
+    type: DataTypes.STRING,
+    primaryKey: true,
+    allowNull: false
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  guardianName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  phoneNumber: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  interest: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  goals: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  source: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  courseInterested: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  parentSupport: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  onlineComfortable: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  approvalStatus: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  }
+}, {
+  tableName: 'students',
+  timestamps: false
 });
 
-const StudentModel = new mongoose.model('StudentCollection', studentSchema);
+
 module.exports = StudentModel;
