@@ -7,15 +7,15 @@ const ClientModel = db.define('Client', {
     primaryKey: true,
     allowNull: false
   },
-  name: {
+  representative_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  companyName: {
+  company_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  phoneNumber: {
+  phone_number: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -27,13 +27,17 @@ const ClientModel = db.define('Client', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  interest: {
+  requirement: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  goals: {
+  deadline: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  budget: {
+    type: DataTypes.DECIMAL,
+    allowNull: true
   },
   source: {
     type: DataTypes.STRING,
@@ -42,6 +46,16 @@ const ClientModel = db.define('Client', {
   approvalStatus: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
+  },
+  paymentLink: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null
+  },
+  proposalName: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null
   }
 }, {
   tableName: 'clients',

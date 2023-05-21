@@ -22,7 +22,7 @@ async function addNewStudent(body){
 function getUnapprovedStudents(){
     return StudentModel.findAll({'where': {'approvalStatus': false}})
     .then(obj => obj.map( val => val.toJSON()))
-    .catch( () => null);
+    .catch(() => null);
 }
 
 function getStudentCounts(){

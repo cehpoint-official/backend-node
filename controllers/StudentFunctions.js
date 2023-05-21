@@ -71,14 +71,12 @@ function getStudentData(req, res){
 };
 
 async function approveStudent(req, res){
-    const {studentId, paymentLink, file} = req.body;
+
     try {
-        await StudentModel.approveStudent(studentId);
+        await StudentModel.approveStudent(req.body.id, req.body.link, req.file.filename);
         res.json({
             'ok': true,
             'message': 'successful',
-            'payment': paymentLink,
-            'file': file
         });
     }
     catch (err) {

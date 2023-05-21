@@ -1,10 +1,15 @@
 // const mongoose = require('mongoose');
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, BaseError } = require('sequelize');
 require('dotenv').config();
 
 const db = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.PASSWORD, {
     host: process.env.HOST,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: (log) => {
+        if (log instanceof BaseError) {
+          console.error('Sequelize Error:', log);
+        }
+    }
 });
 
 db.authenticate()
