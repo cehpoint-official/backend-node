@@ -73,13 +73,14 @@ function getStudentData(req, res){
 async function approveStudent(req, res){
 
     try {
-        await StudentModel.approveStudent(req.body.id, req.body.link, req.file.filename);
+        await studentService.approveStudent(req.body.id, req.body.link, req.file.filename);
         res.json({
             'ok': true,
             'message': 'successful',
         });
     }
     catch (err) {
+        console.log(err);
         res.json({
             'ok': false,
             'status': 'unsuccessful'

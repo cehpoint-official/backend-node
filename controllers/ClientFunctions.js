@@ -88,17 +88,15 @@ function getClientData(req, res){
 }
 
 async function approveClient(req, res){
-    const {clientId, paymentLink, file} = req.body;
     try {
-        await ClientModel.approveClient(clientId);
+        await clientService.approveClient(req.body.id, req.body.link, req.file.filename);
         res.json({
             'ok': true,
             'message': 'successful',
-            'payment': paymentLink,
-            'file': file
         });
     }
     catch (err) {
+        console.log(err);
         res.json({
             'ok': false,
             'status': 'unsuccessful'

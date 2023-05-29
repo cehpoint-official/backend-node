@@ -37,10 +37,14 @@ function getStudentData(){
     .catch(() => null);
 }
 
-async function approveStudent(id){
+async function approveStudent(id, link, filename){
     try {
         await StudentModel.update(
-            {'approvalStatus': true},
+            {
+                'approvalStatus': true,
+                'paymentLink': link,
+                'proposalName': filename
+            },
             {'where' : {'id': id}}
         );
     }

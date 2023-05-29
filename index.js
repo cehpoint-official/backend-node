@@ -40,7 +40,7 @@ app.get('/getcounts', userMethods.getStudentCounts, clientMethods.getClientCount
 app.get('/getstudentdata', userMethods.getStudentData);
 app.get('/getclientdata', clientMethods.getClientData);
 app.post('/approvestudent', uploads.single('proposal'), userMethods.approveStudent);
-app.post('/approveclient', clientMethods.approveClient);
+app.post('/approveclient', uploads.single('proposal'), clientMethods.approveClient);
 
 
 app.listen(5000, ()=>console.log('Server started'));

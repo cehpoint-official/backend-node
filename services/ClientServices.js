@@ -36,11 +36,15 @@ function getClientData() {
     .catch(() => null);
 }
 
-async function approveClient(id){
+async function approveClient(id, link, filename){
     try {
         await ClientModel.update(
-            {'approvalStatus': true},
-            {'where': {'id': id}}
+            {
+                'approvalStatus': true,
+                'paymentLink': link,
+                'proposalName': filename
+            },
+            {'where' : {'id': id}}
         );
     }
     catch (err) {

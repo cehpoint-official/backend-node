@@ -2,14 +2,14 @@ POST http://localhost:5000/newstudentdetails
 Content-Type: application/json
 
 {
-    "name": "name",
-    "guardianName": "father",
-    "phoneNumber": 12875,
-    "email": "abc@xyz.com",
-    "address": "somewhere",
-    "interest": "none",
-    "goals": "none",
-    "source": "none",
+    "name": "what",
+    "guardianName": "is",
+    "phoneNumber": 12345,
+    "email": "email",
+    "address": "i",
+    "interest": "live",
+    "goals": "in",
+    "source": "america",
     "courseInterested": false,
     "parentSupport": false,
     "onlineComfortable": false,
@@ -22,15 +22,15 @@ POST http://localhost:5000/newclientdetails
 Content-Type: application/json
 
 {
-    "name": "somename",
-    "companyName": "none",
+    "representativeName": "please",
+    "companyName": "bozo",
     "phoneNumber": 18090,
     "email": "abc@xyz.com",
-    "address": "somewhere",
-    "interest": "none",
-    "goals": "null",
-    "source": "yahoo",
-    "approvalStatus": true
+    "address": "bozo",
+    "requirement": "none",
+    "deadline": "null",
+    "budget": "28000",
+    "source": "yahoo"
 }
 
 ###
@@ -42,3 +42,11 @@ GET http://localhost:5000/getstudentdata
 ###
 
 GET http://localhost:5000/getcounts
+
+###
+
+GET http://localhost:5000/getunapprovedclients
+
+###
+
+GET http://localhost:5000/getunapprovedstudents

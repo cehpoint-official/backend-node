@@ -7,17 +7,20 @@ const ClientModel = db.define('Client', {
     primaryKey: true,
     allowNull: false
   },
-  representative_name: {
+  representativeName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    field: 'representative_name'
   },
-  company_name: {
+  companyName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    field: 'company_name'
   },
-  phone_number: {
+  phoneNumber: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    field: 'phone_number'
   },
   email: {
     type: DataTypes.STRING,
